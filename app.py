@@ -1,16 +1,19 @@
-from flask import Flask, request
+from flask import Flask
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def home():
-    return "BOT 7MOBILIDADE ONLINE"
-
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    data = request.json
-    print(data)
-    return "ok", 200
+    return "BOT 7MOBILIDADE ONLINE 🚀"
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0", port=5000)from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "BOT 7MOBILIDADE ONLINE 🚀"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)
