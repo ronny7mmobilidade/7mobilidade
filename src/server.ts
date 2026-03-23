@@ -30,7 +30,7 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 });
 
 // Start Server
-const PORT = Number(process.env.PORT) || config.port;
+const PORT = Number(config.port);
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
