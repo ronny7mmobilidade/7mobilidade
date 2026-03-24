@@ -30,12 +30,12 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 });
 
 // Start Server
-const PORT = config.port;
+const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🤖 Bot API: http://localhost:${PORT}/api/bot`);
-  console.log(`🌍 Ambiente: ${config.nodeEnv}`);
+  console.log(`🌎 Ambiente: ${config.nodeEnv}`);
 });
-
 export default app;
