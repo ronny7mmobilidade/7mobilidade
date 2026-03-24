@@ -161,6 +161,32 @@ router.get('/status/:userID', async (req: Request, res: Response) => {
 });
 
 /**
+ * GET /api/bot/test-credentials
+ * Testa as credenciais da API DevMobility
+ */
+router.get('/test-credentials', async (req: Request, res: Response) => {
+  try {
+    const testResponse = await devMobilityService.calcularValoresViagem({
+      enderecoOrigem: 'Rua Teste, 123 - São Paulo',
+      listaDestinoCidade: [{ endereco: 'Avenida Teste, 456 - São Paulo' }],
+    });
+
+    res.json({
+      success: true,
+      message: 'Credenciais válidas!',
+      response: testResponse,
+    });
+  } catch (error) {
+    console.error('Erro ao testar credenciais:', error);
+    res.status(500).json({
+      success: false,
+      error: `Erro ao testar credenciais: ${error instanceof Error ? error.message : String(error)}`,
+      hint: 'Verifique as variáveis de ambiente: DEVMOBILITY_USERNAME, DEVMOBILITY_PASSWORD, DEVMOBILITY_BASE_URL',
+    });
+  }
+});
+
+/**
  * POST /api/bot/cancel/:userID
  * Cancela solicitação
  */

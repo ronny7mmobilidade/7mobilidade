@@ -30,22 +30,8 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 });
 
 // Start Server
-const PORT = Number(config.port);
-app.get('/api/bot', (req, res) => {
-
-  const mode = req.query['hub.mode']
-  const token = req.query['hub.verify_token']
-  const challenge = req.query['hub.challenge']
-
-  if (mode === 'subscribe' && token === '7mobilidade') {
-    console.log('WEBHOOK VALIDADO')
-    return res.status(200).send(challenge)
-  }
-
-  return res.sendStatus(403)
-
-})
-app.listen(PORT, '0.0.0.0', () => {
+const PORT = config.port;
+app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
   console.log(`📊 Health check: http://localhost:${PORT}/health`);
   console.log(`🤖 Bot API: http://localhost:${PORT}/api/bot`);
